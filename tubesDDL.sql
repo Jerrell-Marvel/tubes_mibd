@@ -28,9 +28,10 @@ CREATE TABLE Pengguna (
 	id_pengguna INT PRIMARY KEY IDENTITY,
 	username VARCHAR(50) NOT NULL UNIQUE,
 	email VARCHAR(50) NOT NULL UNIQUE,
+	nama VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
 	nomor_telepon CHAR(14) NOT NULL UNIQUE,
-	role VARCHAR(20) CHECK (role IN ('pemilik', 'pengguna')) NOT NULL,
+	role VARCHAR(20) CHECK (role IN ('pemilik', 'pelanggan')) NOT NULL,
 	tanggal_daftar DATETIME DEFAULT GETDATE(),
 	alamat VARCHAR(100) NOT NULL,
 	id_kelurahan INT NOT NULL FOREIGN KEY REFERENCES Kelurahan(id_kelurahan)
