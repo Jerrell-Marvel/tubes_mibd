@@ -2,7 +2,7 @@ import pyodbc
 
 from connectDB import conn
 
-from services import Furnitur
+from services import furnitur
 
 from executeQuery import execute_query
 
@@ -30,5 +30,5 @@ b = cursor.execute("SELECT 6").fetchone()[0]
 #     mainCursor.close()
 
 
-execute_query(Furnitur.updateFurnitur, (1,), nama="skldjfkl", deskripsi="asal")
+execute_query(furnitur.updateFurnitur, (1,), nama="skldjfkl", deskripsi="asal")
 # print(a)
