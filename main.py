@@ -30,5 +30,5 @@ b = cursor.execute("SELECT 6").fetchone()[0]
 #     mainCursor.close()
 
 
-execute_query(furnitur.updateFurnitur, (1,), nama="skldjfkl", deskripsi="asal")
+execute_query(furnitur.updateFurnitur, (1,), nama="test", deskripsi="asalsdfsf")
 # print(a)
