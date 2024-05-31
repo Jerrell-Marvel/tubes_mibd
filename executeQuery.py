@@ -1,12 +1,13 @@
 from connectDB import conn
 
-def execute_query(queryFn, params, cursor=None):
+def execute_query(queryFn,argsTuple, cursor=None, **kwargs):
+
     commit = False
     if cursor is None:
         cursor = conn.cursor()
         commit = True
-    
-    queryFn(*params, cursor)
+
+    queryFn(*argsTuple, cursor=cursor, **kwargs)
     
     if commit:
         conn.commit()
