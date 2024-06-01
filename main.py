@@ -2,10 +2,14 @@ import pyodbc
 
 from connectDB import conn
 
-from services import furnitur, transaksi
+# from services import furnitur, transaksi
+
+from services.Pengguna import insertPengguna
 
 
 from executeQuery import execute_query
+
+from Controller.transaksi import melakukanTransaksi
 
 
 # buat cursor dari connection
@@ -24,7 +28,7 @@ mainCursor = conn.cursor()
 #     f = execute_query(Furnitur.insertFurnitur, ("lemari baju 5", "lemari baju bagus","wwwww"),cursor=mainCursor)
 #     raise ValueError("LOLOLOL")
 #     mainCursor.commit()
-# except ValueError as e: 
+# except ValueError as e:
 #     print(e)
 #     mainCursor.rollback()
 # finally :
@@ -38,6 +42,12 @@ mainCursor = conn.cursor()
 # print(a)
 
 
-data = [{"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}, {"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}, {"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}]
+idPengguna = 3
+idFurnitur = 1
 
-execute_query(transaksi.insertManyTransaksiBagianFurnitur, 10, data)
+data = [{"id_bagian_furnitur": 1, "id_warna": 1, "id_material": 1, "kuantitas": 5}, {
+    "id_bagian_furnitur": 2, "id_warna": 1, "id_material": 1, "kuantitas": 4}]
+
+# execute_query(transaksi.insertManyTransaksiBagianFurnitur, 10, data)
+
+melakukanTransaksi(idPengguna, idFurnitur, data)
