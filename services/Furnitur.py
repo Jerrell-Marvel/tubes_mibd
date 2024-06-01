@@ -1,4 +1,3 @@
-from connectDB import conn
 
 def insertFurnitur(nama, deskripsi, cursor=None):
     query = '''

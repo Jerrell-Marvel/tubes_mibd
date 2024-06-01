@@ -14,7 +14,7 @@ def getPenggunaByUsername(username,cursor):
     pengguna = cursor.execute(query, (username)).fetchone()
     
     if(pengguna is None):
-        raise Exception("Username dimasukkan tidak terdaftar!")
+        raise Exception("Username tidak terdaftar!")
     
     dictPengguna = {
         "id_pengguna": pengguna[0],
