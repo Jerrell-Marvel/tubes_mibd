@@ -11,11 +11,9 @@ def melakukanTransaksi(id_pengguna, id_furnitur, transaksiBagianFurniturData):
     cursor = conn.cursor()
 
     try:
-        idTransaksi = execute_query(
-            insertTransaksi, id_pengguna, id_furnitur, cursor=cursor)['id_transaksi']
+        idTransaksi = execute_query(insertTransaksi, id_pengguna, id_furnitur, cursor=cursor)['id_transaksi']
 
-        execute_query(insertManyTransaksiBagianFurnitur, idTransaksi,
-                      transaksiBagianFurniturData, cursor=cursor)
+        execute_query(insertManyTransaksiBagianFurnitur, idTransaksi, transaksiBagianFurniturData, cursor=cursor)
 
         cursor.commit()
     except Exception as e:
