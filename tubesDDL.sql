@@ -44,7 +44,11 @@ CREATE TABLE Pengguna (
 	password VARCHAR(50) NOT NULL,
 	nomor_telepon CHAR(14) NOT NULL UNIQUE,
 	role VARCHAR(20) CHECK (role IN ('pemilik', 'pelanggan')) NOT NULL,
+<<<<<<< HEAD
 	tanggal_daftar DATETIME NOT NULL DEFAULT GETDATE(),
+=======
+	tanggal_daftar DATETIME DEFAULT GETDATE(),
+>>>>>>> a19c83e739cd8b2b3a5e21ba870b40b7a9e8701e
 	alamat VARCHAR(100) NOT NULL,
 	id_kelurahan INT NOT NULL FOREIGN KEY REFERENCES Kelurahan(id_kelurahan)
 );
