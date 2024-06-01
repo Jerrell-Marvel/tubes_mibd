@@ -8,13 +8,13 @@ from executeQuery import execute_query
 
 
 # buat cursor dari connection
-cursor = conn.cursor()
+mainCursor = conn.cursor()
 
-a = cursor.execute("SELECT 5").fetchone()[0]
-b = cursor.execute("SELECT 6").fetchone()[0]
+# a = cursor.execute("SELECT 5").fetchone()[0]
+# b = cursor.execute("SELECT 6").fetchone()[0]
 
 # no transaction
-# d = execute_query(Furnitur.insertFurnitur, ("lemari baju", "lemari baju bagus","wwwww"))
+# d = execute_query(furnitur.insertFurnitur, "lemari baju 555dsfsdf5", "lemari baju bagus","wwwww")
 
 # with transaction
 # try :
@@ -30,5 +30,5 @@ b = cursor.execute("SELECT 6").fetchone()[0]
 #     mainCursor.close()
 
 
-execute_query(furnitur.updateFurnitur, (1,), nama="test", deskripsi="asalsdfsf")
+execute_query(furnitur.updateFurnitur,  1, nama="test", deskripsi="asalsdfsf", cursor=mainCursor)
 # print(a)
