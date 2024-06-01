@@ -28,6 +28,12 @@ def updateFurnitur(id_furnitur, nama=None, deskripsi=None, cursor=None):
 
     cursor.execute(query, colValue)
 
+def deleteFurnitur(id_furnitur, cursor=None):
+    query  = '''UPDATE Furnitur SET is_active = 0 WHERE id_furnitur = ?'''
+
+    cursor.execute(query, (id_furnitur,))
+
+
 
 
 

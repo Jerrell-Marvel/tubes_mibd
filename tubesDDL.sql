@@ -44,11 +44,7 @@ CREATE TABLE Pengguna (
 	password VARCHAR(50) NOT NULL,
 	nomor_telepon CHAR(14) NOT NULL UNIQUE,
 	role VARCHAR(20) CHECK (role IN ('pemilik', 'pelanggan')) NOT NULL,
-<<<<<<< HEAD
 	tanggal_daftar DATETIME NOT NULL DEFAULT GETDATE(),
-=======
-	tanggal_daftar DATETIME DEFAULT GETDATE(),
->>>>>>> a19c83e739cd8b2b3a5e21ba870b40b7a9e8701e
 	alamat VARCHAR(100) NOT NULL,
 	id_kelurahan INT NOT NULL FOREIGN KEY REFERENCES Kelurahan(id_kelurahan)
 );
@@ -68,7 +64,8 @@ CREATE TABLE Detail_Bagian_Furnitur(
 CREATE TABLE Transaksi (
 	id_transaksi INT NOT NULL IDENTITY PRIMARY KEY,
 	id_pengguna INT NOT NULL FOREIGN KEY REFERENCES Pengguna(id_pengguna),
-	tanggal_transaksi DATETIME NOT NULL DEFAULT GETDATE(),
+	id_furnitur INT NOT NULL FOREIGN KEY REFERENCES Furnitur(id_furnitur),
+	tanggal_transaksi DATETIME NOT NULL DEFAULT GETDATE()
 );
 
 CREATE TABLE Transaksi_Bagian_Furnitur (

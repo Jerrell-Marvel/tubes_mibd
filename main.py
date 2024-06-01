@@ -29,6 +29,9 @@ mainCursor = conn.cursor()
 # finally :
 #     mainCursor.close()
 
+# execute_query(furnitur.insertFurnitur, "lemari bagus", "desk lemari")
 
-execute_query(furnitur.updateFurnitur,  1, nama="test", deskripsi="asalsdfsf", cursor=mainCursor)
+execute_query(furnitur.deleteFurnitur, 1)
+
+# execute_query(furnitur.updateFurnitur,  1, nama="test", deskripsi="asalsdfsf", cursor=mainCursor)
 # print(a)

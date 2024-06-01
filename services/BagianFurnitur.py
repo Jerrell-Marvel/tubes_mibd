@@ -44,3 +44,8 @@ def updateDetailBagianFurnitur(id_bagian_furnitur, harga=None, stok=None, cursor
     query += " WHERE id_bagian_furnitur = ?"
 
     cursor.execute(query, colValue)
+
+def deleteBagianFurnitur(id_bagian_furnitur, cursor=None) :
+    query  = '''UPDATE Bagian_Furnitur SET is_active = 0 WHERE id_bagian_furnitur = ?'''
+
+    cursor.execute(query, (id_bagian_furnitur,))
