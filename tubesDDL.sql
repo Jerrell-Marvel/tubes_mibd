@@ -43,7 +43,7 @@ CREATE TABLE Pengguna (
 	nama VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
 	nomor_telepon CHAR(14) NOT NULL UNIQUE,
-	role VARCHAR(20) CHECK (role IN ('pemilik', 'pelanggan')) NOT NULL,
+	role VARCHAR(20) CHECK (role IN ('pemilik', 'pelanggan')) NOT NULL DEFAULT 'pelanggan',
 	tanggal_daftar DATETIME NOT NULL DEFAULT GETDATE(),
 	alamat VARCHAR(100) NOT NULL,
 	id_kelurahan INT NOT NULL FOREIGN KEY REFERENCES Kelurahan(id_kelurahan)
@@ -86,4 +86,3 @@ CREATE TABLE Transaksi_Bagian_Furnitur (
 	),
 	PRIMARY KEY (id_transaksi, id_bagian_furnitur, id_warna, id_material)
 );
-
