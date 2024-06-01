@@ -2,7 +2,8 @@ import pyodbc
 
 from connectDB import conn
 
-from services import furnitur
+from services import furnitur, transaksi
+
 
 from executeQuery import execute_query
 
@@ -31,7 +32,12 @@ mainCursor = conn.cursor()
 
 # execute_query(furnitur.insertFurnitur, "lemari bagus", "desk lemari")
 
-execute_query(furnitur.deleteFurnitur, 1)
+# execute_query(furnitur.deleteFurnitur, 1)
 
 # execute_query(furnitur.updateFurnitur,  1, nama="test", deskripsi="asalsdfsf", cursor=mainCursor)
 # print(a)
+
+
+data = [{"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}, {"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}, {"id_bagian_furnitur": 5, "id_warna": 10, "id_material": 5, "kuantitas":4}]
+
+execute_query(transaksi.insertManyTransaksiBagianFurnitur, 10, data)

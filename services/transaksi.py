@@ -3,9 +3,19 @@ def insertTransaksi(id_pengguna, id_furnitur, cursor=None):
 
     cursor.execute(query, (id_pengguna, id_furnitur))
 
-def insertTransaksiBagianFurnitur(id_transaksi, id_bagian_furnitur,id_warna, id_material, kuantitas,cursor=None) : 
+def insertManyTransaksiBagianFurnitur(id_transaksi,transaksiBagianFurniturData,cursor=None) : 
     query = '''INSERT INTO (id_transaksi, id_bagian_furnitur, id_warna, id_material, kuantitas)
-    VALUES
-    (?, ?, ?, ?, ?)'''
+    VALUES '''
 
-    cursor.execute(query, (id_transaksi, id_bagian_furnitur,id_warna, id_material, kuantitas))
+    colValues = []
+    for data in transaksiBagianFurniturData:
+        query += "(?, ?, ?, ?, ?), "
+        colValues.append(id_transaksi)
+        colValues.append(data.get("id_bagian_furnitur"))
+        colValues.append(data.get("id_warna"))
+        colValues.append(data.get("id_material"))
+        colValues.append(data.get("kuantitas"))
+    
+    query = query.rstrip(", ")
+
+    cursor.execute(query, colValues)
