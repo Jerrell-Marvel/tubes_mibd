@@ -21,7 +21,8 @@ def register(username, email, nama, password, nomor_telepon, alamat, nama_kelura
 
     try :
         cursor = conn.cursor()
-        idKelurahan = execute_query(kelurahan.getKelurahan, nama_kelurahan, cursor=cursor)["id_kelurahan"]
+        kelurahanQueryRes = execute_query(kelurahan.getKelurahan, nama_kelurahan, cursor=cursor)
+        idKelurahan = kelurahanQueryRes["id_kelurahan"]
         dataPengguna = execute_query(pengguna.insertPengguna, username, email, nama, password, nomor_telepon, alamat, idKelurahan, cursor=cursor)
         cursor.commit()
 

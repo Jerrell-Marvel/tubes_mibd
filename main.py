@@ -23,10 +23,11 @@ from view.login import loginView
 from view.register import registerView
 from view.furnitur import furniturView
 
-
+loggedInUserInfo = None
 a = None
+test = None
 def main():
-    loggedInUserInfo = None
+    
     userInput = homeView()
 
     if userInput == 1 :
