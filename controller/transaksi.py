@@ -19,3 +19,10 @@ def melakukanTransaksi(id_pengguna, id_furnitur, transaksiBagianFurniturData):
         raise e
     finally:
         cursor.close()
+
+
+def getTransaksiByDateRange(startDate, endDate):
+    try:
+        transaksi = execute_query(getTransaksiByDateRange, startDate,endDate)
+    except Exception as e:
+        raise e
