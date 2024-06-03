@@ -82,15 +82,23 @@ def getDetailFurniturById(id_furnitur, cursor=None):
 
     queryResult = cursor.execute(query, (id_furnitur,))
 
-    detailFurnitur = queryResult.fetchone()
+    detailFurnitur = queryResult.fetchall()
+
+    if detailFurnitur is None : 
+        raise Exception("Furnitur tidak ditemukan")
 
     columnNames = [column[0] for column in cursor.description]
 
-    detailFurniturDict = {}
-    for i in range(0, len(columnNames)) :
-        detailFurniturDict[columnNames[i]] = detailFurnitur[i]
+    detailFurniturList = []
+    for i in range(0, len(detailFurnitur)) :
+        detailFurniturDict = {}
+        for j in range(0, len(columnNames)) :
+            detailFurniturDict[columnNames[j]] = detailFurnitur[i][j]
+        detailFurniturList.append(detailFurniturDict)
 
-    return detailFurniturDict
+    
+
+    return detailFurniturList
 
 
 
