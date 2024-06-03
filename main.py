@@ -22,6 +22,7 @@ mainCursor = conn.cursor()
 from view.login import loginView
 from view.register import registerView
 from view.furnitur import furniturView
+from view.detailFurnitur import detailFurnitur
 
 loggedInUserInfo = None
 a = None
@@ -46,7 +47,9 @@ def main():
         loggedInUserInfo = {"role":"pelanggan", **userData}
 
     elif userInput == 3:
-        furniturView()
+        idFurnitur = furniturView()
+        
+        detailFurnitur(idFurnitur)
 
 main()
 

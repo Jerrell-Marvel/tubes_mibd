@@ -12,7 +12,6 @@ def registerView() :
     try : 
         dataPengguna = penggunaController.register(username, email, nama, password, noTelp, alamat, kelurahan)
         
-
         return dataPengguna
 
     except Exception as e : 

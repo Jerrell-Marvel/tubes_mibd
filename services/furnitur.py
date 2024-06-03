@@ -33,15 +33,64 @@ def deleteFurnitur(id_furnitur, cursor=None):
     cursor.execute(query, (id_furnitur,))
 
 def getAllFurnitur(cursor=None):
-    query = '''SELECT nama FROM Furnitur WHERE is_active = 1'''
+    query = '''SELECT id_furnitur, nama, deskripsi FROM Furnitur WHERE is_active = 1'''
 
     queryResult = cursor.execute(query)
 
     furnitur = queryResult.fetchall()
 
-    print(furnitur)
-
     return furnitur
+
+def getDetailFurniturById(id_furnitur, cursor=None):
+    query = '''
+        SELECT 
+            f.id_furnitur,
+            f.nama as nama_furnitur,
+            f.deskripsi,
+            bf.id_bagian_furnitur,
+            bf.nama AS nama_bagian_furnitur,
+            bf.panjang,
+            bf.lebar,
+            bf.tinggi,
+            w.id_warna,
+            w.nama AS nama_warna,
+            m.id_material,
+            m.nama AS nama_material,
+            dbf.harga,
+            dbf.stok
+        FROM
+            Furnitur f
+        INNER JOIN
+            Bagian_Furnitur bf
+        ON
+            f.id_furnitur = bf.id_furnitur
+        INNER JOIN
+            Detail_Bagian_Furnitur dbf
+        ON
+            bf.id_bagian_furnitur = dbf.id_bagian_furnitur
+        INNER JOIN
+            Warna w
+        ON
+            dbf.id_warna = w.id_warna
+        INNER JOIN
+            Material m
+        ON
+            dbf.id_material = m.id_material
+        WHERE
+            f.id_furnitur = ?;
+    '''
+
+    queryResult = cursor.execute(query, (id_furnitur,))
+
+    detailFurnitur = queryResult.fetchone()
+
+    columnNames = [column[0] for column in cursor.description]
+
+    detailFurniturDict = {}
+    for i in range(0, len(columnNames)) :
+        detailFurniturDict[columnNames[i]] = detailFurnitur[i]
+
+    return detailFurniturDict
 
 
 
