@@ -1,3 +1,7 @@
+from view.furnitur import furniturView
+from view.detailFurnitur import detailFurniturView
+from view.register import registerView
+from view.login import loginView
 import pyodbc
 
 from connectDB import conn
@@ -18,25 +22,21 @@ from executeQuery import execute_query
 mainCursor = conn.cursor()
 
 
-
-from view.login import loginView
-from view.register import registerView
-from view.furnitur import furniturView
-from view.detailFurnitur import detailFurnitur
-
 loggedInUserInfo = None
 a = None
 test = None
+
+
 def main():
-    
+
     userInput = homeView()
 
-    if userInput == 1 :
+    if userInput == 1:
         userData = loginView()
         loggedInUserInfo = userData
 
         userRole = loggedInUserInfo["role"]
-        if userRole == "pelanggan" : 
+        if userRole == "pelanggan":
             print("view pelanggan")
         elif userRole == "pemilik":
             print("view pemilik")
@@ -44,12 +44,12 @@ def main():
         print(loggedInUserInfo)
     elif userInput == 2:
         userData = registerView()
-        loggedInUserInfo = {"role":"pelanggan", **userData}
+        loggedInUserInfo = {"role": "pelanggan", **userData}
 
     elif userInput == 3:
         idFurnitur = furniturView()
-        
-        detailFurnitur(idFurnitur)
+        detailFurniturView(idFurnitur)
+
 
 main()
 
@@ -90,9 +90,9 @@ main()
 
 # melakukanTransaksi(idPengguna, idFurnitur, data)
 
-# from controller import pengguna as penggunaController 
+# from controller import pengguna as penggunaController
 
-# try: 
+# try:
 #     dataP = penggunaController.register("asep4", "asep4@gmail.com", "asep nama", "12345", "0887883", "jalan jalan", "babakan ciparay")
 #     print(dataP)
 # except Exception as e:
