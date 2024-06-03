@@ -8,22 +8,25 @@ def login(username, password):
   try:
     pengguna = execute_query(getPenggunaByUsername, username)
     
-    if(pengguna.password != password):
+    if(pengguna["password"] != password):
       raise Exception("Password yang dimasukkan salah!")
     else: 
-      return {"id_pengguna" : pengguna.id_pengguna, "role":pengguna.role}
+      return pengguna
     
   except Exception as e:
     raise e
   
 
 def register(username, email, nama, password, nomor_telepon, alamat, nama_kelurahan):
+
     try :
         cursor = conn.cursor()
-        idKelurahan = execute_query(kelurahan.getKelurahan, nama_kelurahan, cursor=cursor)[0]
-        execute_query(pengguna.insertPengguna, username, email, nama, password, nomor_telepon, alamat, idKelurahan, cursor=cursor)
+        idKelurahan = execute_query(kelurahan.getKelurahan, nama_kelurahan, cursor=cursor)["id_kelurahan"]
+        dataPengguna = execute_query(pengguna.insertPengguna, username, email, nama, password, nomor_telepon, alamat, idKelurahan, cursor=cursor)
         cursor.commit()
-    except ValueError as e: 
+
+        return dataPengguna
+    except Exception as e: 
         cursor.rollback()
         raise e
     finally :

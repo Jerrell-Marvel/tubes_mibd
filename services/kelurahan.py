@@ -5,9 +5,11 @@ def getKelurahan(nama_kelurahan, cursor = None):
     WHERE LOWER(nama) = LOWER(?)
     '''
 
-    kelurahan = cursor.execute(query,(nama_kelurahan)).fetchone()
+    queryResult = cursor.execute(query,(nama_kelurahan))
 
-    if kelurahan is None :
+    if queryResult is None :
         raise Exception("Kelurahan tidak terdaftar!")
+    
+    kelurahan = queryResult.fetchone()
     
     return {"id_kelurahan" : kelurahan[0]}

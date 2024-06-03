@@ -2,18 +2,52 @@ import pyodbc
 
 from connectDB import conn
 
+from view.home import homeView
+
 # from services import furnitur, transaksi
 
-from services.Pengguna import insertPengguna
+# from services.Pengguna import insertPengguna
 
 
 from executeQuery import execute_query
 
-from Controller.transaksi import melakukanTransaksi
+# from Controller.transaksi import melakukanTransaksi
 
 
 # buat cursor dari connection
 mainCursor = conn.cursor()
+
+
+
+from view.login import loginView
+from view.register import registerView
+from view.furnitur import furniturView
+
+
+a = None
+def main():
+    loggedInUserInfo = None
+    userInput = homeView()
+
+    if userInput == 1 :
+        userData = loginView()
+        loggedInUserInfo = userData
+
+        userRole = loggedInUserInfo["role"]
+        if userRole == "pelanggan" : 
+            print("view pelanggan")
+        elif userRole == "pemilik":
+            print("view pemilik")
+
+        print(loggedInUserInfo)
+    elif userInput == 2:
+        userData = registerView()
+        loggedInUserInfo = {"role":"pelanggan", **userData}
+
+    elif userInput == 3:
+        furniturView()
+
+main()
 
 # a = cursor.execute("SELECT 5").fetchone()[0]
 # b = cursor.execute("SELECT 6").fetchone()[0]
@@ -42,12 +76,21 @@ mainCursor = conn.cursor()
 # print(a)
 
 
-idPengguna = 3
-idFurnitur = 1
+# idPengguna = 3
+# idFurnitur = 1
 
-data = [{"id_bagian_furnitur": 1, "id_warna": 1, "id_material": 1, "kuantitas": 5}, {
-    "id_bagian_furnitur": 2, "id_warna": 1, "id_material": 1, "kuantitas": 4}]
+# data = [{"id_bagian_furnitur": 1, "id_warna": 1, "id_material": 1, "kuantitas": 5}, {
+#     "id_bagian_furnitur": 2, "id_warna": 1, "id_material": 1, "kuantitas": 4}]
 
 # execute_query(transaksi.insertManyTransaksiBagianFurnitur, 10, data)
 
-melakukanTransaksi(idPengguna, idFurnitur, data)
+# melakukanTransaksi(idPengguna, idFurnitur, data)
+
+# from controller import pengguna as penggunaController 
+
+# try: 
+#     dataP = penggunaController.register("asep4", "asep4@gmail.com", "asep nama", "12345", "0887883", "jalan jalan", "babakan ciparay")
+#     print(dataP)
+# except Exception as e:
+#     print(e)
+#     print("here")

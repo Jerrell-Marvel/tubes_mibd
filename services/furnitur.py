@@ -32,6 +32,17 @@ def deleteFurnitur(id_furnitur, cursor=None):
 
     cursor.execute(query, (id_furnitur,))
 
+def getAllFurnitur(cursor=None):
+    query = '''SELECT nama FROM Furnitur WHERE is_active = 1'''
+
+    queryResult = cursor.execute(query)
+
+    furnitur = queryResult.fetchall()
+
+    print(furnitur)
+
+    return furnitur
+
 
 
 

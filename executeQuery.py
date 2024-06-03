@@ -6,7 +6,7 @@ def execute_query(queryCallbackFn, *args, cursor=None, **kwargs):
     if cursor is None:
         cursor = conn.cursor()
         commit = True
-
+    
     returnVal = queryCallbackFn(*args, cursor=cursor, **kwargs)
 
     if commit:

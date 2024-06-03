@@ -3,11 +3,9 @@ from services.transaksi import insertTransaksi
 from services.transaksi import insertManyTransaksiBagianFurnitur
 from executeQuery import execute_query
 
-idTransaksi = None
 
 
 def melakukanTransaksi(id_pengguna, id_furnitur, transaksiBagianFurniturData):
-
     cursor = conn.cursor()
 
     try:
