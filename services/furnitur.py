@@ -12,25 +12,27 @@ def updateFurnitur(id_furnitur, nama=None, deskripsi=None, cursor=None):
     query = '''UPDATE Furnitur SET '''
 
     colValue = []
-    if nama is not None :
+    if nama is not None:
         query += f"nama=?, "
         colValue.append(nama)
-    
-    if deskripsi is not None :
+
+    if deskripsi is not None:
         query += f"deskripsi=?, "
         colValue.append(deskripsi)
-    
+
     query = query.rstrip(", ")
-    
+
     colValue.append(id_furnitur)
     query += " WHERE id_furnitur = ?"
 
     cursor.execute(query, colValue)
 
+
 def deleteFurnitur(id_furnitur, cursor=None):
-    query  = '''UPDATE Furnitur SET is_active = 0 WHERE id_furnitur = ?'''
+    query = '''UPDATE Furnitur SET is_active = 0 WHERE id_furnitur = ?'''
 
     cursor.execute(query, (id_furnitur,))
+
 
 def getAllFurnitur(cursor=None):
     query = '''SELECT id_furnitur, nama, deskripsi FROM Furnitur WHERE is_active = 1'''
@@ -40,6 +42,7 @@ def getAllFurnitur(cursor=None):
     furnitur = queryResult.fetchall()
 
     return furnitur
+
 
 def getDetailFurniturById(id_furnitur, cursor=None):
     query = '''
@@ -84,23 +87,16 @@ def getDetailFurniturById(id_furnitur, cursor=None):
 
     detailFurnitur = queryResult.fetchall()
 
-    if detailFurnitur is None : 
+    if detailFurnitur is None:
         raise Exception("Furnitur tidak ditemukan")
 
     columnNames = [column[0] for column in cursor.description]
 
     detailFurniturList = []
-    for i in range(0, len(detailFurnitur)) :
+    for i in range(0, len(detailFurnitur)):
         detailFurniturDict = {}
-        for j in range(0, len(columnNames)) :
+        for j in range(0, len(columnNames)):
             detailFurniturDict[columnNames[j]] = detailFurnitur[i][j]
         detailFurniturList.append(detailFurniturDict)
 
-    
-
     return detailFurniturList
-
-
-
-
-
