@@ -6,7 +6,7 @@ import pyodbc
 
 from connectDB import conn
 
-from view.home import homeView
+from view.home import homeView, loggedInHomeView
 
 # from services import furnitur, transaksi
 
@@ -23,34 +23,26 @@ mainCursor = conn.cursor()
 
 
 loggedInUserInfo = None
-a = None
-test = None
+
+userInput = homeView()
+
+if userInput == 1:
+    userData = loginView()
+    loggedInUserInfo = userData
+
+    userRole = loggedInUserInfo["role"]
+    if userRole == "pelanggan":
+        loggedInHomeView()
+    elif userRole == "pemilik":
+        print("view pemilik")
+
+    print(loggedInUserInfo)
+elif userInput == 2:
+    userData = registerView()
+    loggedInUserInfo = {"role": "pelanggan", **userData}
+    loggedInHomeView()
 
 
-def main():
-
-    userInput = homeView()
-
-    if userInput == 1:
-        userData = loginView()
-        loggedInUserInfo = userData
-
-        userRole = loggedInUserInfo["role"]
-        if userRole == "pelanggan":
-            furniturView()
-        elif userRole == "pemilik":
-            print("view pemilik")
-
-        print(loggedInUserInfo)
-    elif userInput == 2:
-        userData = registerView()
-        loggedInUserInfo = {"role": "pelanggan", **userData}
-
-    elif userInput == 3:
-        furniturView()
-
-
-main()
 
 # a = cursor.execute("SELECT 5").fetchone()[0]
 # b = cursor.execute("SELECT 6").fetchone()[0]

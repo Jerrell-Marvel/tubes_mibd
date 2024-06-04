@@ -1,4 +1,5 @@
 from controller import pengguna as penggunaController 
+from view.home import homeView
 
 def registerView() : 
     email = input("Email : ")

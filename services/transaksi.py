@@ -27,7 +27,7 @@ def insertManyTransaksiBagianFurnitur(id_transaksi, transaksiBagianFurniturData,
 
     cursor.execute(query, colValues)
     
-def getTransaksiByDateRange(startDate, endDate):
+def getTransaksiByDateRange(startDate, endDate, id_pengguna=None, cursor=None):
     query = '''
         SELECT 
             T.id_transaksi, 
@@ -57,9 +57,16 @@ def getTransaksiByDateRange(startDate, endDate):
         JOIN Detail_Bagian_Furnitur DBF
         ON TBF.id_bagian_furnitur = DBF.id_bagian_furnitur AND TBF.id_warna = DBF.id_warna AND TBF.id_material = TBF.id_material
         WHERE T.tanggal_transaksi >= ? AND T.tanggal_transaksi = ?
-        ORDER BY T.tanggal_transaksi ASC
     '''
-    transaksi = cursor.execute(query, (startDate,endDate)).fetchall()
+
+    values = [startDate, endDate]
+    if id_pengguna is not None : 
+        query += " AND T.id_pelanggan = ?"
+        values.append(id_pengguna)
+
+    query += " ORDER BY T.tanggal_transaksi ASC"
+
+    transaksi = cursor.execute(query, values).fetchall()
     
     if(transaksi is None):
         raise Exception("Tidak terdapat terdapat transaksi pada rentang tersebut")
