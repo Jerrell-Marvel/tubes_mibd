@@ -27,7 +27,7 @@ def insertManyTransaksiBagianFurnitur(id_transaksi, transaksiBagianFurniturData,
 
     cursor.execute(query, colValues)
     
-def getTransaksiByDateRange(startDate, endDate, id_pengguna=None, cursor=None):
+def getTransaksiByDateRange(startDate=None, endDate=None, id_pengguna=None, cursor=None):
     query = '''
         SELECT 
             T.id_transaksi, 
@@ -56,12 +56,23 @@ def getTransaksiByDateRange(startDate, endDate, id_pengguna=None, cursor=None):
         ON TBF.id_material = M.id_material
         JOIN Detail_Bagian_Furnitur DBF
         ON TBF.id_bagian_furnitur = DBF.id_bagian_furnitur AND TBF.id_warna = DBF.id_warna AND TBF.id_material = TBF.id_material
-        WHERE T.tanggal_transaksi >= ? AND T.tanggal_transaksi = ?
     '''
 
-    values = [startDate, endDate]
+    
+    values = []
+    hasDate = False
+    if(startDate is not None and endDate is not None):
+        hasDate = True
+        query += "WHERE T.tanggal_transaksi >= ? AND T.tanggal_transaksi <= ?"
+        values.append(startDate)
+        values.append(endDate)
+
     if id_pengguna is not None : 
-        query += " AND T.id_pelanggan = ?"
+        if hasDate == False : 
+            query += " WHERE T.id_pengguna = ?"
+        else : 
+            query += " AND T.id_pengguna = ?"
+
         values.append(id_pengguna)
 
     query += " ORDER BY T.tanggal_transaksi ASC"
@@ -79,5 +90,23 @@ def getTransaksiByDateRange(startDate, endDate, id_pengguna=None, cursor=None):
         for j in range(0, len(columnNames)) :
             transaksiDict[columnNames[j]] = transaksi[i][j]
         transaksiList.append(transaksiDict)
-    
+
     return transaksiList
+
+def getTotalPendapatan(startDate, endDate, cursor=None):
+    query = '''
+    SELECT 
+    SUM(DBF.harga * TBF.kuantitas) AS totalPendapatan
+    FROM Transaksi T 
+    JOIN Transaksi_Bagian_Furnitur TBF
+    ON T.id_transaksi = TBF.id_transaksi
+    JOIN Detail_Bagian_Furnitur DBF
+    ON TBF.id_bagian_furnitur = DBF.id_bagian_furnitur AND TBF.id_warna = DBF.id_warna AND TBF.id_material = TBF.id_material
+    WHERE T.tanggal_transaksi >= ? AND T.tanggal_transaksi <= ?
+    '''
+
+    queryResult = cursor.execute(query, (startDate, endDate))
+
+    totalPendapatan = queryResult.fetchone()[0]
+
+    return totalPendapatan

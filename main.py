@@ -2,6 +2,7 @@ from view.furnitur import furniturView
 from view.detailFurnitur import detailFurniturView
 from view.register import registerView
 from view.login import loginView
+from view.pemilik import pemilikView
 import pyodbc
 
 from connectDB import conn
@@ -32,15 +33,14 @@ if userInput == 1:
 
     userRole = loggedInUserInfo["role"]
     if userRole == "pelanggan":
-        loggedInHomeView()
+        loggedInHomeView(loggedInUserInfo)
     elif userRole == "pemilik":
-        print("view pemilik")
+        pemilikView()
 
-    print(loggedInUserInfo)
 elif userInput == 2:
     userData = registerView()
     loggedInUserInfo = {"role": "pelanggan", **userData}
-    loggedInHomeView()
+    loggedInHomeView(loggedInUserInfo)
 
 
 

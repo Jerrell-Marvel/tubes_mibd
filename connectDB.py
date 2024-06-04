@@ -2,7 +2,7 @@ import pyodbc
 
 # data koneksi sql server
 SERVER = 'LAPTOP-PVCB9MBF\SQLEXPRESS'
-DATABASE = 'tubes5'
+DATABASE = 'tubes6'
 USERNAME = 'sa'
 PASSWORD = 'jOuter2407123#*'
 

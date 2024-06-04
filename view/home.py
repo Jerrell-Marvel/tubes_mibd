@@ -1,4 +1,5 @@
 from view.furnitur import furniturView
+from view.transaksiPengguna import transaksiPenggunaView
 
 def homeView ():
     print("Selamat datang di toko Furnitur Kapi")
@@ -13,9 +14,9 @@ def homeView ():
 
     return userInput
 
-def loggedInHomeView() : 
+def loggedInHomeView(loggedInUserInfo) : 
     print("1. Lihat furnitur")
-    print("2. Lihat transaksi")
+    print("2. Lihat history transaksi")
 
     userInput = int(input("Pilih aksi yang ingin dilakukan : "))
     while(userInput != 1 and userInput != 2):
@@ -25,6 +26,6 @@ def loggedInHomeView() :
     if userInput == 1 :
         furniturView()
     else :
-        print("transaksi view")
+        transaksiPenggunaView(loggedInUserInfo["id_pengguna"])
 
     
