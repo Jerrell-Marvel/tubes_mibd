@@ -37,7 +37,7 @@ def main():
 
         userRole = loggedInUserInfo["role"]
         if userRole == "pelanggan":
-            print("view pelanggan")
+            furniturView()
         elif userRole == "pemilik":
             print("view pemilik")
 
@@ -47,8 +47,7 @@ def main():
         loggedInUserInfo = {"role": "pelanggan", **userData}
 
     elif userInput == 3:
-        idFurnitur = furniturView()
-        detailFurniturView(idFurnitur)
+        furniturView()
 
 
 main()
