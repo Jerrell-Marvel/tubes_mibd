@@ -2,7 +2,8 @@ from controller import furnitur as furniturController
 from view.detailFurnitur import detailFurniturView
 
 
-def furniturView():
+def furniturView(loggedInUserInfo):
+    print()
     print("List furnitur : ")
 
     furnitur = furniturController.getAllFurnitur()
@@ -20,4 +21,4 @@ def furniturView():
 
     idFurnitur = furnitur[userInput - 1][0]
 
-    detailFurniturView(idFurnitur)
+    detailFurniturView(idFurnitur, loggedInUserInfo)

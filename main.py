@@ -1,5 +1,5 @@
-from view.furnitur import furniturView
-from view.detailFurnitur import detailFurniturView
+# from view.furnitur import furniturView
+# from view.detailFurnitur import detailFurniturView
 from view.register import registerView
 from view.login import loginView
 from view.pemilik import pemilikView

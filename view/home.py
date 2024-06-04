@@ -15,6 +15,8 @@ def homeView ():
     return userInput
 
 def loggedInHomeView(loggedInUserInfo) : 
+    print()
+    print("List aksi")
     print("1. Lihat furnitur")
     print("2. Lihat history transaksi")
 
@@ -24,8 +26,8 @@ def loggedInHomeView(loggedInUserInfo) :
         userInput = int(input("Pilih aksi yang ingin dilakukan : "))
     
     if userInput == 1 :
-        furniturView()
+        furniturView(loggedInUserInfo)
     else :
-        transaksiPenggunaView(loggedInUserInfo["id_pengguna"])
+        transaksiPenggunaView(loggedInUserInfo)
 
     

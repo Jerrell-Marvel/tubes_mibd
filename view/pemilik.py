@@ -2,6 +2,8 @@ from controller.transaksi import getTransaksiByDateRange as getTransaksiByDateRa
 
 
 def pemilikView():
+  print()
+  print("List aksi")
   print("1. Update detail furnitur dan bagian furnitur ")
   print("2. Ubah harga bagian furnitur")
   print("3. Tampilkan laporan penjualan transaksi")
@@ -21,9 +23,9 @@ def pemilikView():
 
       transaksi = transaksiDict["transaksi"]
       totalPendapatan = transaksiDict["totalPendapatan"]
-
+      print()
       print(f"Total pendapatan pada rentang {startDate} - {endDate}  :", totalPendapatan)
-      
+      print()
       # for i in range(0, len(transaksi)):
       #   # print(str((i+1))+ ".", end="")
       #   print(transaksi[i])
@@ -45,7 +47,7 @@ def pemilikView():
         print("===========================================")
         ctr+= 1
       
-      
+      pemilikView()
     except Exception as e:
       print(e)
   elif(userInput == 4):
