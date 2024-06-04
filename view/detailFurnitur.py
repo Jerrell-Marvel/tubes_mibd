@@ -39,19 +39,37 @@ def detailFurniturView(id_furnitur, loggedInUserInfo):
         userInput = int(input("Pilih aksi yang ingin dilakukan : "))
 
     if(userInput == 1):
-        nomorBagianFurnitur = int(input("Pilih bagian furnitur : "))
-        while(nomorBagianFurnitur < 1 or nomorBagianFurnitur > len(detailFurnitur)):
-            print()
-            print("Opsi yang dimasukkan tidak valid")
+        listDetail = []
+        tambah = 'Y'
+        while(tambah == 'Y'):
             nomorBagianFurnitur = int(input("Pilih bagian furnitur : "))
-        kuantitas = int(input("Masukkan kuantitas : "))
-        detail = detailFurnitur[nomorBagianFurnitur - 1]
-        listDetail = [{
-            'id_bagian_furnitur' : detail['id_bagian_furnitur'],
-            'id_warna' : detail['id_warna'],
-            'id_material' : detail['id_material'],
-            'kuantitas' : kuantitas
-        }]
+            # jika input nomor bagian salah
+            while(nomorBagianFurnitur < 1 or nomorBagianFurnitur > len(detailFurnitur)):
+                print()
+                print("Opsi yang dimasukkan tidak valid")
+                nomorBagianFurnitur = int(input("Pilih bagian furnitur : "))
+
+            kuantitas = int(input("Masukkan kuantitas : "))
+            detail = detailFurnitur[nomorBagianFurnitur - 1]
+            dictDetail = {
+                'id_bagian_furnitur' : detail['id_bagian_furnitur'],
+                'id_warna' : detail['id_warna'],
+                'id_material' : detail['id_material'],
+                'kuantitas' : kuantitas
+            }
+            listDetail.append(dictDetail)
+            print()
+            tambah = input("Tambahkan bagian furnitur lainnya ? (Y/N) :")
+
+            #jika input tambah salah
+            while(tambah != 'N' and tambah != 'Y'):
+                print("Opsi yang dimasukkan tidak valid")
+                print()
+                tambah = input("Tambahkan bagian furnitur lainnya ? (Y/N) :")
+
+            if(tambah == 'N'):
+                break
+        print("Transaksi berhasil dilakukan")
         transaksiController.melakukanTransaksi(loggedInUserInfo['id_pengguna'], id_furnitur=id_furnitur, transaksiBagianFurniturData=listDetail)
 
         homeView.loggedInHomeView(loggedInUserInfo)
