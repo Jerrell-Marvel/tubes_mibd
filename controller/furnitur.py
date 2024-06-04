@@ -6,7 +6,7 @@ def getAllFurnitur():
     return furnitur
 
 def getDetailFurnitur(id_furnitur, id_bagian_furnitur=None,  id_warna=None, id_material=None):
-    detailFurniturList = execute_query(furniturService.getDetailFurniturById, idFurnitur, id_bagian_furnitur=id_bagian_furnitur, id_warna=id_warna, id_material=id_material)
+    detailFurniturList = execute_query(furniturService.getDetailFurniturById, id_furnitur, id_bagian_furnitur=id_bagian_furnitur, id_warna=id_warna, id_material=id_material)
     
     return detailFurniturList
 

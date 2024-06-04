@@ -20,14 +20,14 @@ def pemilikView():
       
       print()
       for furnitur in furniturList:
-        print(f'{furnitur["id_furnitur"]} \t{furnitur["nama"]}')
+        print(f'{furnitur[0]} \t{furnitur[1]}')
       
       print()
       idFurnitur = input("Masukkan id furnitur yang ingin diubah : ")
       bagianFurniturList = furniturController.getDetailFurnitur(idFurnitur)
       
       for bagianFurnitur in bagianFurniturList:
-        print(f'Id bagian furnitur : {bagianFurnitur["id_bagian_Furnitur"]}')
+        print(f'Id bagian furnitur : {bagianFurnitur["id_bagian_furnitur"]}')
         print(f'Nama : {bagianFurnitur["nama_bagian_furnitur"]}')
         print(f'Id warna : {bagianFurnitur["id_warna"]}')
         print(f'Warna : {bagianFurnitur["nama_warna"]}')
