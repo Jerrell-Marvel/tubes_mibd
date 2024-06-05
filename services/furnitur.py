@@ -80,20 +80,20 @@ def getDetailFurniturById(id_furnitur, id_bagian_furnitur=None, id_warna=None, i
         ON
             dbf.id_material = m.id_material
         WHERE
-            f.id_furnitur = ?;
+            f.id_furnitur = ?
     '''
     colValue = [id_furnitur]
     
     if(id_bagian_furnitur is not None):
-        query += f" AND id_bagian_furnitur=? "
+        query += f" AND id_bagian_furnitur=?"
         colValue.append(id_bagian_furnitur)
         
     if(id_warna is not None):
-        query += f" AND id_warna=? "
+        query += f" AND id_warna=?"
         colValue.append(id_warna)
         
     if(id_material is not None):
-        query += f" AND id_material=? "
+        query += f" AND id_material=?"
         colValue.append(id_material)
 
     queryResult = cursor.execute(query, colValue)
