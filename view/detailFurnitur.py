@@ -69,8 +69,14 @@ def detailFurniturView(id_furnitur, loggedInUserInfo):
 
             if(tambah == 'N'):
                 break
-        print("Transaksi berhasil dilakukan")
-        transaksiController.melakukanTransaksi(loggedInUserInfo['id_pengguna'], id_furnitur=id_furnitur, transaksiBagianFurniturData=listDetail)
+        
+        try:
+            transaksiController.melakukanTransaksi(loggedInUserInfo['id_pengguna'], id_furnitur=id_furnitur, transaksiBagianFurniturData=listDetail)
+            print("Transaksi berhasil dilakukan")
+        except Exception as e : 
+            print(e)
+            return
+            
 
         # homeView.loggedInHomeView(loggedInUserInfo)
     # elif(userInput == 2):

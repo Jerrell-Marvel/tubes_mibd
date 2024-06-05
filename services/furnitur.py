@@ -133,3 +133,38 @@ def updateBagianFurnitur(id_bagian_furnitur, id_warna, id_material, nama_bagian_
     
     cursor.execute(queryUpdateBagianFurnitur, (nama_bagian_furnitur, panjang, lebar, tinggi, id_bagian_furnitur))
     cursor.execute(queryUpdateDetailBagianFurnitur, (harga, stok, id_bagian_furnitur, id_warna, id_material))
+
+def getDetailBagianFurnitur(id_bagian_furnitur, id_warna, id_material, rowLock=False, cursor=None):
+    query = '''SELECT 
+    dbf.id_bagian_furnitur,
+    dbf.id_warna,
+    dbf.id_material,
+    dbf.harga,
+    dbf.stok
+    FROM Detail_Bagian_Furnitur dbf'''
+
+    if rowLock == True : 
+        query += " WITH (UPDLOCK, ROWLOCK)"
+    
+    query += ''' WHERE dbf.id_bagian_furnitur = ? AND dbf.id_warna = ? AND dbf.id_material = ?'''
+
+    queryResult = cursor.execute(query, (id_bagian_furnitur, id_warna, id_material))
+
+    detailBagianFurnitur = queryResult.fetchone()
+
+    return {
+        "id_bagian_furnitur" : detailBagianFurnitur[0],
+        "id_warna" : detailBagianFurnitur[1],
+        "id_material" : detailBagianFurnitur[2],
+        "harga" : detailBagianFurnitur[3],
+        "stok" : detailBagianFurnitur[4],
+    }
+
+def updateStokDetailBagianFurnitur(id_bagian_furnitur, id_warna, id_material, stokDibeli, cursor=None):
+    query = '''UPDATE Detail_Bagian_Furnitur SET stok = stok - ? WHERE id_bagian_furnitur = ? AND id_warna = ? AND id_material = ?'''
+
+    queryResult = cursor.execute(query, (stokDibeli, id_bagian_furnitur, id_warna, id_material))
+
+
+# def updateStokDetailBagianFurnitur(id_bagian_furnitur, id_warna, id_material, jumlahStokDibeli, cursor=None):
+#     query = ''''''
