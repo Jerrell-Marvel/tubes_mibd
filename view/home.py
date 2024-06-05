@@ -9,6 +9,7 @@ def homeView ():
 
     userInput = int(input("Pilih aksi yang ingin dilakukan : "))
     while(userInput != 1 and userInput != 2):
+        print()
         print("Opsi yang dimasukkan tidak valid")
         userInput = int(input("Pilih aksi yang ingin dilakukan : "))
 
@@ -35,3 +36,4 @@ def loggedInHomeView(loggedInUserInfo) :
         elif userInput == 3 :
             print()
             isLogin = False
+            return

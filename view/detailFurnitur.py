@@ -72,9 +72,9 @@ def detailFurniturView(id_furnitur, loggedInUserInfo):
         print("Transaksi berhasil dilakukan")
         transaksiController.melakukanTransaksi(loggedInUserInfo['id_pengguna'], id_furnitur=id_furnitur, transaksiBagianFurniturData=listDetail)
 
-        homeView.loggedInHomeView(loggedInUserInfo)
-    elif(userInput == 2):
-        homeView.loggedInHomeView(loggedInUserInfo)
+        # homeView.loggedInHomeView(loggedInUserInfo)
+    # elif(userInput == 2):
+        # homeView.loggedInHomeView(loggedInUserInfo)
         # print(str(i + 1) + ".",
         #       detailFurnitur[i]["nama_bagian_furnitur"], detailFurnitur[i]["nama_material"], detailFurnitur[i]["nama_warna"], ", harga:", float(detailFurnitur[i]["harga"]), ", stok:", detailFurnitur[i]["stok"], ", panjang:", detailFurnitur[i]["panjang"], ", lebar:", detailFurnitur[i]["lebar"], ", tinggi:", detailFurnitur[0]["tinggi"])
 
