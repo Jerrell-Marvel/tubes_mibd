@@ -18,5 +18,5 @@ def registerView() :
     except Exception as e : 
         print(e)
         print("Terjadi kesalahan saat registrasi")
-        registerView()
+        return None
 
