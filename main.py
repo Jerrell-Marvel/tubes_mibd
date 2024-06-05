@@ -22,25 +22,25 @@ from executeQuery import execute_query
 # buat cursor dari connection
 mainCursor = conn.cursor()
 
+while(True):
+    loggedInUserInfo = None
 
-loggedInUserInfo = None
+    userInput = homeView()
 
-userInput = homeView()
+    if userInput == 1:
+        userData = loginView()
+        loggedInUserInfo = userData
 
-if userInput == 1:
-    userData = loginView()
-    loggedInUserInfo = userData
+        userRole = loggedInUserInfo["role"]
+        if userRole == "pelanggan":
+            loggedInHomeView(loggedInUserInfo)
+        elif userRole == "pemilik":
+            pemilikView()
 
-    userRole = loggedInUserInfo["role"]
-    if userRole == "pelanggan":
+    elif userInput == 2:
+        userData = registerView()
+        loggedInUserInfo = {"role": "pelanggan", **userData}
         loggedInHomeView(loggedInUserInfo)
-    elif userRole == "pemilik":
-        pemilikView()
-
-elif userInput == 2:
-    userData = registerView()
-    loggedInUserInfo = {"role": "pelanggan", **userData}
-    loggedInHomeView(loggedInUserInfo)
 
 
 
