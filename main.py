@@ -36,7 +36,6 @@ while(True):
             loggedInHomeView(loggedInUserInfo)
         elif userRole == "pemilik":
             pemilikView()
-
     elif userInput == 2:
         userData = registerView()
         loggedInUserInfo = {"role": "pelanggan", **userData}

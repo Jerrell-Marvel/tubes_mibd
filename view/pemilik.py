@@ -14,10 +14,6 @@ def pemilikView():
     userInput = int(input("Pilih aksi yang ingin dilakukan : "))
     
     if(userInput == 1):
-      print("fix later")
-#       try:
-#         furniturList = furniturController.getAllFurnitur()
-    elif(userInput == 2):
       try:
         furniturList = furniturController.getAllFurnitur()
 
@@ -69,43 +65,43 @@ def pemilikView():
 
           furniturController.updateBagianFurnitur(id_bagian_furnitur=dataBagianFurniturDict['id_bagian_furnitur'],id_warna=dataBagianFurniturDict['id_warna'],id_material=dataBagianFurniturDict['id_material'],nama_bagian_furnitur=updatedNama, panjang=updatedPanjang, lebar=updatedLebar,tinggi=updatedTinggi,harga=updatedHarga, stok=updatedStok)
 
-        except Exception as e:
-          print(e)
-      elif(userInput == 2):
-        try:
-          startDate = input("Masukkan rentang awal transaksi(YYYYMMDD) :")
-          endDate = input("Masukkan rentang akhir transaksi(YYYYMMDD) :")
-          transaksiDict = getTransaksiByDateRangeController(startDate, endDate)
+      except Exception as e:
+        print(e)
+    elif(userInput == 2):
+      try:
+        startDate = input("Masukkan rentang awal transaksi(YYYYMMDD) :")
+        endDate = input("Masukkan rentang akhir transaksi(YYYYMMDD) :")
+        transaksiDict = getTransaksiByDateRangeController(startDate, endDate)
 
-          transaksi = transaksiDict["transaksi"]
-          totalPendapatan = transaksiDict["totalPendapatan"]
-          print()
-          print(f"Total pendapatan pada rentang {startDate} - {endDate}  :", totalPendapatan)
-          print()
-          # for i in range(0, len(transaksi)):
-          #   # print(str((i+1))+ ".", end="")
-          #   print(transaksi[i])
-          #   print("=======================")
-          # print(transaksi)
-          print("List transaksi : ")
-          ctr = 1
-          for t in transaksi :
-            print(str(ctr) + ". ", end="")
-            print(t["listBagianFurnitur"][0]["nama_furnitur"])
+        transaksi = transaksiDict["transaksi"]
+        totalPendapatan = transaksiDict["totalPendapatan"]
+        print()
+        print(f"Total pendapatan pada rentang {startDate} - {endDate}  :", totalPendapatan)
+        print()
+        # for i in range(0, len(transaksi)):
+        #   # print(str((i+1))+ ".", end="")
+        #   print(transaksi[i])
+        #   print("=======================")
+        # print(transaksi)
+        print("List transaksi : ")
+        ctr = 1
+        for t in transaksi :
+          print(str(ctr) + ". ", end="")
+          print(t["listBagianFurnitur"][0]["nama_furnitur"])
 
-            for bagianFurnitur in t["listBagianFurnitur"] :
-              namaBagianFurnitur = bagianFurnitur["nama_bagian_furnitur"]
-              warna = bagianFurnitur["nama_warna"]
-              material = bagianFurnitur["nama_material"]
-              kuantitas = bagianFurnitur["kuantitas"]
-              print(f"{namaBagianFurnitur} {material} {warna} x{kuantitas}")
+          for bagianFurnitur in t["listBagianFurnitur"] :
+            namaBagianFurnitur = bagianFurnitur["nama_bagian_furnitur"]
+            warna = bagianFurnitur["nama_warna"]
+            material = bagianFurnitur["nama_material"]
+            kuantitas = bagianFurnitur["kuantitas"]
+            print(f"{namaBagianFurnitur} {material} {warna} x{kuantitas}")
 
-            print("===========================================")
-            ctr+= 1
+          print("===========================================")
+          ctr+= 1
 
 
-        except Exception as e:
-          print(e)
+      except Exception as e:
+        print(e)
     elif(userInput == 3):
       print()
       isLogin = False
