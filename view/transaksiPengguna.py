@@ -25,7 +25,7 @@ def transaksiPenggunaView(loggedInUserInfo):
                 print("===========================================")
             ctr += 1
 
-        homeView.loggedInHomeView(loggedInUserInfo)
+        # homeView.loggedInHomeView(loggedInUserInfo)
 
     except Exception as e:
         print(e)

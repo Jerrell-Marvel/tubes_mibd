@@ -15,56 +15,40 @@ def pemilikView():
     
     if(userInput == 1):
       try:
+        print("List seluruh furnitur")
         furniturList = furniturController.getAllFurnitur()
-
+        
         print()
         for furnitur in furniturList:
           print(f'{furnitur[0]} \t{furnitur[1]}')
-
+        
         print()
         idFurnitur = input("Masukkan id furnitur yang ingin diubah : ")
         bagianFurniturList = furniturController.getDetailFurnitur(idFurnitur)
-
+        
+        ctr = 1
         for bagianFurnitur in bagianFurniturList:
-          print(f'Id bagian furnitur : {bagianFurnitur["id_bagian_furnitur"]}')
+          print(f'Bagian Furnitur Nomor : {ctr}')
           print(f'Nama : {bagianFurnitur["nama_bagian_furnitur"]}')
-          print(f'Id warna : {bagianFurnitur["id_warna"]}')
           print(f'Warna : {bagianFurnitur["nama_warna"]}')
-          print(f'Id material : {bagianFurnitur["id_material"]}')
           print(f'Material : {bagianFurnitur["nama_material"]}')
           print("------------------------------------------------")
+          ctr += 1
+        print()
+        noBaris = int(input("Masukkan nomor bagian furnitur yang ingin diubah : "))
 
-          print()
-          for furnitur in furniturList:
-            print(f'{furnitur[0]} \t{furnitur[1]}')
-
-          print()
-          idFurnitur = input("Masukkan id furnitur yang ingin diubah : ")
-          bagianFurniturList = furniturController.getDetailFurnitur(idFurnitur)
-
-          ctr = 1
-          for bagianFurnitur in bagianFurniturList:
-            print(f'Bagian Furnitur Nomor : {ctr}')
-            print(f'Nama : {bagianFurnitur["nama_bagian_furnitur"]}')
-            print(f'Warna : {bagianFurnitur["nama_warna"]}')
-            print(f'Material : {bagianFurnitur["nama_material"]}')
-            print("------------------------------------------------")
-            ctr += 1
-          print()
-          noBaris = int(input("Masukkan nomor bagian furnitur yang ingin diubah : "))
-
-          dataBagianFurniturDict = bagianFurniturList[noBaris-1]
-          # dataBagianFurniturDict = furniturController.getDetailFurnitur(idFurnitur,id_bagian_furnitur=bagianFurnitur{"id_bagian_furnitur"}, id_warna=idWarna, id_material=idMaterial)[0]
-
-          updatedNama = input(f'Nama({dataBagianFurniturDict["nama_bagian_furnitur"]}) : ')
-          updatedPanjang = input(f'Panjang({dataBagianFurniturDict["panjang"]}) : ')
-          updatedLebar = input(f'Lebar({dataBagianFurniturDict["lebar"]}) : ')
-          updatedTinggi = input(f'Tinggi({dataBagianFurniturDict["tinggi"]}) : ')
-          updatedHarga = input(f'Harga({dataBagianFurniturDict["harga"]}) : ')
-          updatedStok = input(f'Stok({dataBagianFurniturDict["stok"]}) : ')
-
-          furniturController.updateBagianFurnitur(id_bagian_furnitur=dataBagianFurniturDict['id_bagian_furnitur'],id_warna=dataBagianFurniturDict['id_warna'],id_material=dataBagianFurniturDict['id_material'],nama_bagian_furnitur=updatedNama, panjang=updatedPanjang, lebar=updatedLebar,tinggi=updatedTinggi,harga=updatedHarga, stok=updatedStok)
-
+        dataBagianFurniturDict = bagianFurniturList[noBaris-1]
+        # dataBagianFurniturDict = furniturController.getDetailFurnitur(idFurnitur,id_bagian_furnitur=bagianFurnitur{"id_bagian_furnitur"}, id_warna=idWarna, id_material=idMaterial)[0]
+        
+        updatedNama = input(f'Nama({dataBagianFurniturDict["nama_bagian_furnitur"]}) : ')
+        updatedPanjang = input(f'Panjang({dataBagianFurniturDict["panjang"]}) : ')
+        updatedLebar = input(f'Lebar({dataBagianFurniturDict["lebar"]}) : ')
+        updatedTinggi = input(f'Tinggi({dataBagianFurniturDict["tinggi"]}) : ')
+        updatedHarga = input(f'Harga({dataBagianFurniturDict["harga"]}) : ')
+        updatedStok = input(f'Stok({dataBagianFurniturDict["stok"]}) : ')
+        
+        furniturController.updateBagianFurnitur(id_bagian_furnitur=dataBagianFurniturDict['id_bagian_furnitur'],id_warna=dataBagianFurniturDict['id_warna'],id_material=dataBagianFurniturDict['id_material'],nama_bagian_furnitur=updatedNama, panjang=updatedPanjang, lebar=updatedLebar,tinggi=updatedTinggi,harga=updatedHarga, stok=updatedStok)
+        
       except Exception as e:
         print(e)
     elif(userInput == 2):
@@ -95,15 +79,13 @@ def pemilikView():
             material = bagianFurnitur["nama_material"]
             kuantitas = bagianFurnitur["kuantitas"]
             print(f"{namaBagianFurnitur} {material} {warna} x{kuantitas}")
-
+            
           print("===========================================")
           ctr+= 1
-
+        
 
       except Exception as e:
         print(e)
     elif(userInput == 3):
       print()
       isLogin = False
-
-
