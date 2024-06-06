@@ -12,7 +12,7 @@ def pemilikView():
     print('3. Log Out')
     
     userInput = int(input("Pilih aksi yang ingin dilakukan : "))
-    
+  
     if(userInput == 1):
       try:
         print("List seluruh furnitur")
@@ -40,12 +40,12 @@ def pemilikView():
         dataBagianFurniturDict = bagianFurniturList[noBaris-1]
         # dataBagianFurniturDict = furniturController.getDetailFurnitur(idFurnitur,id_bagian_furnitur=bagianFurnitur{"id_bagian_furnitur"}, id_warna=idWarna, id_material=idMaterial)[0]
         
-        updatedNama = input(f'Nama({dataBagianFurniturDict["nama_bagian_furnitur"]}) : ')
-        updatedPanjang = input(f'Panjang({dataBagianFurniturDict["panjang"]}) : ')
-        updatedLebar = input(f'Lebar({dataBagianFurniturDict["lebar"]}) : ')
-        updatedTinggi = input(f'Tinggi({dataBagianFurniturDict["tinggi"]}) : ')
-        updatedHarga = input(f'Harga({dataBagianFurniturDict["harga"]}) : ')
-        updatedStok = input(f'Stok({dataBagianFurniturDict["stok"]}) : ')
+        updatedNama = input(f'Nama({dataBagianFurniturDict["nama_bagian_furnitur"]}) : ') or dataBagianFurniturDict["nama_bagian_furnitur"]
+        updatedPanjang = input(f'Panjang({dataBagianFurniturDict["panjang"]}) : ') or dataBagianFurniturDict["panjang"]
+        updatedLebar = input(f'Lebar({dataBagianFurniturDict["lebar"]}) : ') or dataBagianFurniturDict["lebar"]
+        updatedTinggi = input(f'Tinggi({dataBagianFurniturDict["tinggi"]}) : ') or dataBagianFurniturDict["tinggi"]
+        updatedHarga = input(f'Harga({dataBagianFurniturDict["harga"]}) : ') or dataBagianFurniturDict["harga"]
+        updatedStok = input(f'Stok({dataBagianFurniturDict["stok"]}) : ') or dataBagianFurniturDict["stok"]
         
         furniturController.updateBagianFurnitur(id_bagian_furnitur=dataBagianFurniturDict['id_bagian_furnitur'],id_warna=dataBagianFurniturDict['id_warna'],id_material=dataBagianFurniturDict['id_material'],nama_bagian_furnitur=updatedNama, panjang=updatedPanjang, lebar=updatedLebar,tinggi=updatedTinggi,harga=updatedHarga, stok=updatedStok)
         
