@@ -34,6 +34,14 @@ def deleteFurnitur(id_furnitur, cursor=None):
     cursor.execute(query, (id_furnitur,))
 
 
+def deleteBagianFurnitur(id_bagian_furnitur, cursor=None):
+    query = '''
+        UPDATE Bagian_Furnitur 
+        SET is_active = 0 
+        WHERE id_bagian_furnitur = ?'''
+
+    cursor.execute(query, (id_bagian_furnitur,))
+
 def getAllFurnitur(cursor=None):
     query = '''SELECT id_furnitur, nama, deskripsi FROM Furnitur WHERE is_active = 1'''
 
