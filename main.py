@@ -3,6 +3,7 @@
 from view.register import registerView
 from view.login import loginView
 from view.pemilik import pemilikView
+from controller.furnitur import insertFurnitur
 import pyodbc
 
 from connectDB import conn
@@ -22,24 +23,73 @@ from executeQuery import execute_query
 # buat cursor dari connection
 mainCursor = conn.cursor()
 
-while(True):
-    loggedInUserInfo = None
+data = {
+    "nama": "Sofa",
+    "deskripsi": "Sofa lembut nyaman untuk bersantai",
+    "bagianFurnitur":[
+        {
+            "nama": "kaki sofa",
+            "panjang": 4,
+            "lebar": 2.5,
+            "tinggi": 15,
+            "detailBagianFurnitur": [
+                {
+                    "warna": "Merah",
+                    "material": "Kayu Jati",
+                    "harga": 10000,
+                    "stok" : 50
+                }, 
+                {
+                    "warna": "Biru",
+                    "material": "Besi",
+                    "harga": 20000,
+                    "stok" : 50
+                }
+            ]
+        }, 
+        {
+            "nama": "bantal sofa",
+            "panjang": 20,
+            "lebar": 5,
+            "tinggi": 2.5,
+            "detailBagianFurnitur": [
+                {
+                    "warna": "Putih",
+                    "material": "Baja",
+                    "harga": 50000,
+                    "stok" : 200
+                }, 
+                {
+                    "warna": "Hitam",
+                    "material": "Marmer",
+                    "harga": 20000,
+                    "stok" : 50
+                }
+            ]
+        }
+    ]
+}
 
-    userInput = homeView()
+insertFurnitur(data["nama"], data["deskripsi"],data["bagianFurnitur"])
 
-    if userInput == 1:
-        userData = loginView()
-        loggedInUserInfo = userData
+# while(True):
+#     loggedInUserInfo = None
 
-        userRole = loggedInUserInfo["role"]
-        if userRole == "pelanggan":
-            loggedInHomeView(loggedInUserInfo)
-        elif userRole == "pemilik":
-            pemilikView()
-    elif userInput == 2:
-        userData = registerView()
-        loggedInUserInfo = {"role": "pelanggan", **userData}
-        loggedInHomeView(loggedInUserInfo)
+#     userInput = homeView()
+
+#     if userInput == 1:
+#         userData = loginView()
+#         loggedInUserInfo = userData
+
+#         userRole = loggedInUserInfo["role"]
+#         if userRole == "pelanggan":
+#             loggedInHomeView(loggedInUserInfo)
+#         elif userRole == "pemilik":
+#             pemilikView()
+#     elif userInput == 2:
+#         userData = registerView()
+#         loggedInUserInfo = {"role": "pelanggan", **userData}
+#         loggedInHomeView(loggedInUserInfo)
 
 
 
