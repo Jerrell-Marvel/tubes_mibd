@@ -23,9 +23,8 @@ from executeQuery import execute_query
 # buat cursor dari connection
 mainCursor = conn.cursor()
 
-while(True):
+while (True):
     loggedInUserInfo = None
-
 
     userInput = homeView()
 
@@ -52,11 +51,9 @@ while(True):
         userData = None
         while (userData is None):
             userData = registerView()
-        
+
         loggedInUserInfo = {"role": "pelanggan", **userData}
         loggedInHomeView(loggedInUserInfo)
-
-
 
 
 # a = cursor.execute("SELECT 5").fetchone()[0]
