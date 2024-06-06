@@ -111,7 +111,7 @@ def getDetailFurniturById(id_furnitur, id_bagian_furnitur=None, id_warna=None, i
         ON
             dbf.id_material = m.id_material
         WHERE
-            f.id_furnitur = ?
+            f.id_furnitur = ? AND f.is_active = 1 AND bf.is_active = 1 
     '''
     colValue = [id_furnitur]
     

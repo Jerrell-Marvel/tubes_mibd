@@ -1,6 +1,6 @@
 from controller import furnitur as furniturController 
 
-def deleteFurnitureView():
+def deleteBagianFurnitureView():
     print("List seluruh furnitur")
     furniturList = furniturController.getAllFurnitur()
     
@@ -11,9 +11,9 @@ def deleteFurnitureView():
         ctr +=1
     
     print()
-    rowFurnitur = input("Masukkan baris furnitur yang ingin diubah : ")
+    rowFurnitur = int(input("Masukkan baris furnitur yang ingin diubah : "))
     idxFurnitur = rowFurnitur - 1
-    bagianFurniturList = furniturController.getDetailFurnitur(idxFurnitur)
+    bagianFurniturList = furniturController.getDetailFurnitur(furniturList[idxFurnitur][0])
     
     ctr = 1
     for bagianFurnitur in bagianFurniturList:

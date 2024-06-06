@@ -11,7 +11,7 @@ def deleteFurnitureView():
         ctr +=1
     
     print()
-    rowFurnitur = input("Masukkan baris furnitur yang ingin dihapus : ")
+    rowFurnitur = int(input("Masukkan baris furnitur yang ingin dihapus : "))
     
     furniturController.deleteFurnitur(furniturList[rowFurnitur - 1][0])
     

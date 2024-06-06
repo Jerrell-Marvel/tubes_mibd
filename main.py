@@ -23,8 +23,6 @@ from executeQuery import execute_query
 # buat cursor dari connection
 mainCursor = conn.cursor()
 
-insertFurnitur(data["nama"], data["deskripsi"],data["bagianFurnitur"])
-
 while(True):
     loggedInUserInfo = None
 

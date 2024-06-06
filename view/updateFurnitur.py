@@ -11,7 +11,7 @@ def updateFurnitureView():
         ctr +=1
     
     print()
-    rowFurnitur = input("Masukkan baris furnitur yang ingin diubah : ")
+    rowFurnitur = int(input("Masukkan baris furnitur yang ingin diubah : "))
     idxFurnitur = rowFurnitur - 1
     
     updatedNama = input(f'Nama({furniturList[idxFurnitur][1]}) : ') or furniturList[idxFurnitur][1]
