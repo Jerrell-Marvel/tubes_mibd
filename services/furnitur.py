@@ -2,10 +2,33 @@
 def insertFurnitur(nama, deskripsi, cursor=None):
     query = '''
         INSERT INTO Furnitur (nama, deskripsi)
+        OUTPUT INSERTED.id_furnitur
         VALUES
         (?, ?);
     '''
-    cursor.execute(query, (nama, deskripsi))
+    queryResult = cursor.execute(query, (nama, deskripsi))
+
+    idFurnitur = queryResult.fetchone()[0]
+
+    return idFurnitur
+
+def insertBagianFurnitur(nama, panjang, lebar, tinggi, id_furnitur, cursor=None):
+    query = '''INSERT INTO Bagian_Furnitur (nama, panjang, lebar, tinggi, id_furnitur)
+                OUTPUT INSERTED.id_bagian_furnitur
+                VALUES (?, ?, ?, ?, ?)'''
+    
+    queryResult = cursor.execute(query, (nama, panjang, lebar, tinggi, id_furnitur))
+
+    idBagianFurnitur = queryResult.fetchone()[0]
+
+    return idBagianFurnitur
+
+def insertDetailBagianFurnitur(id_bagian_furnitur, id_warna, id_material, harga, stok, cursor=None):
+    query = '''INSERT INTO Detail_Bagian_Furnitur (id_bagian_furnitur, id_warna, id_material, harga, stok)
+    VALUES (?, ?, ?, ?, ?)'''
+
+
+    queryResult = cursor.execute(query, (id_bagian_furnitur, id_warna, id_material, harga, stok))
 
 
 def updateFurnitur(id_furnitur, nama=None, deskripsi=None, cursor=None):

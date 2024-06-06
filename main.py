@@ -3,6 +3,7 @@
 from view.register import registerView
 from view.login import loginView
 from view.pemilik import pemilikView
+from controller.furnitur import insertFurnitur
 import pyodbc
 
 from connectDB import conn
@@ -22,8 +23,11 @@ from executeQuery import execute_query
 # buat cursor dari connection
 mainCursor = conn.cursor()
 
+insertFurnitur(data["nama"], data["deskripsi"],data["bagianFurnitur"])
+
 while(True):
     loggedInUserInfo = None
+
 
     userInput = homeView()
 
@@ -37,12 +41,23 @@ while(True):
         elif userRole == "pemilik":
             pemilikView()
     elif userInput == 2:
+        userData = registerView()
+        loggedInUserInfo = {"role": "pelanggan", **userData}
+        loggedInHomeView(loggedInUserInfo)
+
+        userRole = loggedInUserInfo["role"]
+        if userRole == "pelanggan":
+            loggedInHomeView(loggedInUserInfo)
+        elif userRole == "pemilik":
+            pemilikView()
+    elif userInput == 2:
         userData = None
         while (userData is None):
             userData = registerView()
         
         loggedInUserInfo = {"role": "pelanggan", **userData}
         loggedInHomeView(loggedInUserInfo)
+
 
 
 

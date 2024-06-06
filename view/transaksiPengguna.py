@@ -21,9 +21,10 @@ def transaksiPenggunaView(loggedInUserInfo):
                 warna = bagianFurnitur["nama_warna"]
                 material = bagianFurnitur["nama_material"]
                 kuantitas = bagianFurnitur["kuantitas"]
-                print(f"{namaBagianFurnitur} {material} {warna} x{kuantitas}")
-                print("===========================================")
+                print( f"   - {namaBagianFurnitur} {material} {warna} x{kuantitas}")
+                
             ctr += 1
+            print("===========================================")
 
         # homeView.loggedInHomeView(loggedInUserInfo)
 
