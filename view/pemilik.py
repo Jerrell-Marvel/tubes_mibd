@@ -6,7 +6,6 @@ from view.deleteFurnitur import deleteFurnitureView
 from view.deleteBagianFurnitur import deleteBagianFurnitureView
 
 
-
 def pemilikView():
     isLogin = True
     while (isLogin):
@@ -85,9 +84,10 @@ def pemilikView():
                     break
             print("METHOD INSERT FURNITUR")
             try:
-              furniturController.insertFurnitur(namaFurnitur, deskripsiFurnitur, listBagianFurnitur)
-            except Exception as e :
-              print(e)
+                furniturController.insertFurnitur(
+                    namaFurnitur, deskripsiFurnitur, listBagianFurnitur)
+            except Exception as e:
+                print(e)
         elif (userInput == 2):
             print("List seluruh furnitur")
             furniturList = furniturController.getAllFurnitur()
@@ -96,12 +96,13 @@ def pemilikView():
             print()
             for furnitur in furniturList:
                 print(f'{ctr}.  {furnitur[1]}')
-                ctr +=1
+                ctr += 1
 
             print()
-            rowFurnitur = int(input("Masukkan baris furnitur yang ingin diubah : "))
+            rowFurnitur = int(
+                input("Masukkan baris furnitur yang ingin diubah : "))
             idFurnitur = rowFurnitur - 1
-    
+
             tambahBagianFurnitur = 'Y'
             listBagianFurnitur = []
             while (tambahBagianFurnitur == 'Y'):
@@ -133,7 +134,6 @@ def pemilikView():
                         'stok': stokDetailBagianFurnitur
                     }
 
-
                     listDetailBagianFurnitur.append(dictDetailBagianFurnitur)
                     tambahDetailBagianFurnitur = input(
                         "Tambahkan detail bagian furnitur lainnya ? (Y/N) :")
@@ -162,9 +162,9 @@ def pemilikView():
                 if (tambahBagianFurnitur == 'N'):
                     break
             print("ID FURNITUR , METHOD INSERT BAGIAN FURNITUR")
-            furniturController.insertBagianFurnitur(idFurnitur, listBagianFurnitur)
+            furniturController.insertBagianFurnitur(
+                idFurnitur, listBagianFurnitur)
 
-            
         elif (userInput == 3):
             # print("Kelola furnitur")
             updateFurnitureView()
@@ -177,13 +177,13 @@ def pemilikView():
                 print()
                 for furnitur in furniturList:
                     print(f'{ctr}.  {furnitur[1]}')
-                    ctr +=1
+                    ctr += 1
 
                 print()
-                
-                rowFurnitur = int(input("Masukkan baris furnitur yang ingin diubah : "))
-                idFurnitur = rowFurnitur - 1
-    
+
+                rowFurnitur = int(
+                    input("Masukkan baris furnitur yang ingin diubah : "))
+                idFurnitur = furniturList[rowFurnitur - 1][0]
 
                 bagianFurniturList = furniturController.getDetailFurnitur(
                     idFurnitur)
