@@ -1,13 +1,12 @@
-from services.pengguna import getPenggunaByUsername
 from services import kelurahan
 from executeQuery import execute_query
-from services import pengguna
+from services import pengguna as penggunaServices
 from connectDB import conn
 
 
 def login(username, password):
     try:
-        pengguna = execute_query(getPenggunaByUsername, username)
+        pengguna = execute_query(penggunaServices.getPenggunaByUsername, username)
 
         if (pengguna["password"] != password):
             raise Exception("Password yang dimasukkan salah!")
@@ -25,7 +24,7 @@ def register(username, email, nama, password, nomor_telepon, alamat, nama_kelura
         kelurahanQueryRes = execute_query(
             kelurahan.getKelurahan, nama_kelurahan, cursor=cursor)
         idKelurahan = kelurahanQueryRes["id_kelurahan"]
-        dataPengguna = execute_query(pengguna.insertPengguna, username, email,
+        dataPengguna = execute_query(penggunaServices.insertPengguna, username, email,
                                      nama, password, nomor_telepon, alamat, idKelurahan, cursor=cursor)
         cursor.commit()
 
@@ -41,5 +40,9 @@ def updatePengguna(id_pengguna, nama, nomor_telepon, email, alamat, nama_kelurah
     id_kelurahan = execute_query(kelurahan.getKelurahan, nama_kelurahan)[
         "id_kelurahan"]
 
-    execute_query(pengguna.updatePengguna, id_pengguna, nama,
+    execute_query(penggunaServices.updatePengguna, id_pengguna, nama,
                   nomor_telepon, email, alamat, id_kelurahan)
+
+
+def getPenggunaByUsername(username): 
+    return execute_query(penggunaServices.getPenggunaByUsername, username)

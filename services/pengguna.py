@@ -19,7 +19,7 @@ def insertPengguna(username, email, nama, password, nomor_telepon, alamat, id_ke
     }
 
 
-def getPenggunaByUsername(username, cursor):
+def getPenggunaByUsername(username, cursor=None):
     query = '''
         SELECT p.id_pengguna, p.username, p.password, p.role, p.nama, p.alamat, k.nama, k.id_kelurahan, kec.nama, kec.id_kecamatan, p.nomor_telepon, p.email FROM Pengguna p INNER JOIN Kelurahan k ON p.id_kelurahan = k.id_kelurahan INNER JOIN Kecamatan kec ON k.id_kecamatan = kec.id_kecamatan
         WHERE LOWER(username) = LOWER(?) 
