@@ -42,11 +42,6 @@ while (True):
         loggedInUserInfo = {"role": "pelanggan", **userData}
         loggedInHomeView(loggedInUserInfo)
 
-        userRole = loggedInUserInfo["role"]
-        if userRole == "pelanggan":
-            loggedInHomeView(loggedInUserInfo)
-        elif userRole == "pemilik":
-            pemilikView()
     elif userInput == 2:
         userData = None
         while (userData is None):

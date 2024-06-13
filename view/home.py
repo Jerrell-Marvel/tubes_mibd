@@ -1,6 +1,7 @@
 from view.furnitur import furniturView
 from view.transaksiPengguna import transaksiPenggunaView
 from controller.pengguna import updatePengguna
+from controller import pengguna as penggunaController
 
 
 def homeView():
@@ -38,17 +39,18 @@ def loggedInHomeView(loggedInUserInfo):
         elif userInput == 2:
             transaksiPenggunaView(loggedInUserInfo)
         elif userInput == 3:
+            userDataDetail = penggunaController.getPenggunaByUsername(loggedInUserInfo["username"])
             print()
             print("Profil pengguna")
             print()
-            print(f'ID_Pengguna : {loggedInUserInfo["id_pengguna"]}')
-            print(f'Username : {loggedInUserInfo["username"]}')
-            print(f'Password : {loggedInUserInfo["password"]}')
-            print(f'Role : {loggedInUserInfo["role"]}')
-            print(f'Nama : {loggedInUserInfo["nama"]}')
-            print(f'Alamat : {loggedInUserInfo["alamat"]}')
-            print(f'Nama Kelurahan : {loggedInUserInfo["nama_kelurahan"]}')
-            print(f'Nama Kecamatan : {loggedInUserInfo["nama_kecamatan"]}')
+            print(f'ID_Pengguna : {userDataDetail["id_pengguna"]}')
+            print(f'Username : {userDataDetail["username"]}')
+            print(f'Password : {userDataDetail["password"]}')
+            print(f'Role : {userDataDetail["role"]}')
+            print(f'Nama : {userDataDetail["nama"]}')
+            print(f'Alamat : {userDataDetail["alamat"]}')
+            print(f'Nama Kelurahan : {userDataDetail["nama_kelurahan"]}')
+            print(f'Nama Kecamatan : {userDataDetail["nama_kecamatan"]}')
             print()
 
             print("List aksi")
@@ -58,19 +60,19 @@ def loggedInHomeView(loggedInUserInfo):
             userInput = int(input("Pilih aksi yang ingin dilakukan: "))
             if (userInput == 1):
                 nama = input(
-                    f'Masukkan nama({loggedInUserInfo["nama"]}): ') or loggedInUserInfo["nama"]
+                    f'Masukkan nama({userDataDetail["nama"]}): ') or userDataDetail["nama"]
                 nomorTelepon = input(
-                    f'Masukkan nomor telepon({loggedInUserInfo["nomor_telepon"]}): ') or loggedInUserInfo["nomor_telepon"]
+                    f'Masukkan nomor telepon({userDataDetail["nomor_telepon"]}): ') or userDataDetail["nomor_telepon"]
                 email = input(
-                    f'Masukkan email({loggedInUserInfo["email"]}): ') or loggedInUserInfo["email"]
+                    f'Masukkan email({userDataDetail["email"]}): ') or userDataDetail["email"]
                 alamat = input(
-                    f'Masukkan alamat({loggedInUserInfo["alamat"]}): ') or loggedInUserInfo["alamat"]
+                    f'Masukkan alamat({userDataDetail["alamat"]}): ') or userDataDetail["alamat"]
                 namaKelurahan = input(
-                    f'Masukkan nama kelurahan({loggedInUserInfo["nama_kelurahan"]}): ') or loggedInUserInfo["nama_kelurahan"]
+                    f'Masukkan nama kelurahan({userDataDetail["nama_kelurahan"]}): ') or userDataDetail["nama_kelurahan"]
 
                 updatePengguna(
-                    loggedInUserInfo["id_pengguna"], nama, nomorTelepon, email, alamat, namaKelurahan)
-                isLogin = False
+                    userDataDetail["id_pengguna"], nama, nomorTelepon, email, alamat, namaKelurahan)
+                
             elif (userInput == 2):
                 print()
         elif userInput == 4:
